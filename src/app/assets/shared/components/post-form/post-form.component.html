@@ -1,0 +1,46 @@
+<div class="container mt-4">
+  <div class="row justify-content-center mb-4">
+    <div class="col-md-6">
+
+      <div class="card shadow">
+        <div class="card-header bg-primary text-white">
+          <h5 class="mb-0">Create Post</h5>
+        </div>
+
+        <div class="card-body">
+          <form [formGroup]="postForm" (ngSubmit)="onSubmit()">
+
+            <div class="mb-3">
+              <label class="form-label">Title</label>
+              <input type="text" class="form-control" formControlName="title">
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Content</label>
+              <textarea class="form-control" rows="3" formControlName="body"></textarea>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">User ID</label>
+              <input type="number" class="form-control" formControlName="userId">
+
+              <!-- validation message -->
+              <small class="text-danger"
+                *ngIf="postForm.get('userId')?.touched && postForm.get('userId')?.invalid">
+                User ID must be greater than 0
+              </small>
+            </div>
+
+            <button type="submit"
+              class="btn btn-primary w-100"
+              [disabled]="postForm.invalid">
+              Submit
+            </button>
+
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
