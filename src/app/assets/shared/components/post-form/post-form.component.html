@@ -31,11 +31,18 @@
               </small>
             </div>
 
-            <button type="submit"
-              class="btn btn-primary w-100"
-              [disabled]="postForm.invalid">
-              Submit
-            </button>
+           <button type="submit" *ngIf="!isInEditMode"
+        class="btn btn-primary w-100"
+        [disabled]="postForm.invalid">
+  Submit
+</button>
+
+<button type="submit" *ngIf="isInEditMode"
+        class="btn btn-primary w-100"
+        [disabled]="postForm.invalid">
+  Update
+</button>
+
 
           </form>
         </div>

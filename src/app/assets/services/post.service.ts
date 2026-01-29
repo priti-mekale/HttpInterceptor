@@ -8,13 +8,27 @@ import { Observable, Subject } from 'rxjs';
   providedIn: 'root'
 })
 export class PostService {
+  patchValue(arg0: { title: string; body: string; userId: string; }) {
+    throw new Error('Method not implemented.');
+  }
 
 newPostSub$:Subject<Ipost>=new Subject<Ipost>()
-
+private editPostSub$:Subject <Ipost>=new Subject<Ipost>()
+editPostSubObs$:Observable<Ipost>=this.editPostSub$.asObservable()
 removePost$ = new Subject<string>();
+private updatePostSub$:Subject<Ipost>=new Subject<Ipost>()
+updatePostSubObj$:Observable<Ipost>=this.updatePostSub$.asObservable()
  // Base URL from environment
   BASE_URL: string = environment.Base_url;
 
+
+  setEditPost(post:Ipost){
+    this.editPostSub$.next(post)
+  }
+
+  setUpdatePost(post :Ipost){
+    this.updatePostSub$.next(post)
+  }
   // Firebase posts endpoint
   POST_URL: string = `${this.BASE_URL}posts.json`;
 
@@ -34,6 +48,11 @@ removePost$ = new Subject<string>();
 
 removePost(id: string) {
   return this._http.delete(`${this.BASE_URL}posts/${id}.json`);
+}
+
+
+updatePost(id: string, post: Ipost) {
+  return this._http.patch(`${this.BASE_URL}posts/${id}.json`, post);
 }
 
 

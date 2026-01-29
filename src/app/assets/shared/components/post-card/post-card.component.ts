@@ -13,6 +13,7 @@ import { SnackbarService } from 'src/app/assets/services/snakbar.service';
 })
 export class PostCardComponent implements OnInit {
 @Input() postObj!:Ipost
+editPostId!: string;
 
   constructor(  private _matDialog: MatDialog,
     private _postService:PostService,
@@ -20,6 +21,7 @@ export class PostCardComponent implements OnInit {
      ) { }
 
   ngOnInit(): void {
+  
   }
 
 
@@ -46,6 +48,10 @@ onRemove() {
     });
 }
 
+
+onEdit(post: Ipost) {
+  this._postService.setEditPost(post);
+}
 
 
 }

@@ -16,6 +16,17 @@ this.getAllPosts()
 this._PostService.newPostSub$.subscribe(obj=>{
   this.postsArr.unshift(obj)
 })
+
+this._PostService.removePost$.subscribe(obj=>{
+  let getIndex= this.postsArr.findIndex(p=>p.id=== obj)
+  this.postsArr.splice(getIndex,1)
+})
+this._PostService.updatePostSubObj$.subscribe(
+  data=>{
+    let getIndex = this.postsArr.findIndex(p=>p.id===data.id)
+    this.postsArr[getIndex]=data
+  }
+)
   }
 
 
